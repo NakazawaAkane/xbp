@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>Akaneの5回</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/xbp.ico">
+</head>
+<body>
+<h1>デザイン演習第6回</h1>
+
+<　<h2>課題　賃貸情報の個人分析</h2>
+　　
+　　　大学生の一人暮らしで多い間取りを調べたところ、1Kが一番人気でした。<br>
+　　　<img src="images/スクリーンショット 2021-11-16 11.03.11.png" width="30%"><br>
+　　　　https://suumo.jp/article/oyakudachi/oyaku/chintai/fr_data/f0scj000/<br>
+　　　1Kの家賃相場を調べてみました。<br>
+　　<h3>1Kの家賃相場</h3>
+　    <img src="images/スクリーンショット 2021-11-16 10.54.35.png" width="40%"><br>
+
+      <img src="images/スクリーンショット 2021-11-16 10.56.09.png" width="20%"><br>
+  
+
+     家賃は6万円以下、階数は2階以上、管理費が5千円以下になるように条件を絞りました。<br>
+    　<img src="images/スクリーンショット 2021-11-16 11.16.49.png" width="40%"><br>
+
+     礼金はなしという条件で絞りました。<br>
+     <img src="images/スクリーンショット 2021-11-16 11.22.30.png" width="40%"><br>
+
+   <h3>面積</h3>
+
+
+     大学生の一人暮らしの部屋の広さはどのくらいなのか調べたところ、部屋の広さは15m2～20m2が多いという結果になりました。<br>
+    <img src="images/スクリーンショット 2021-11-16 11.49.09.png" width="40%"><br>
+     https://suumo.jp/article/oyakudachi/oyaku/chintai/fr_data/f0scj000/<br>
+
+    部屋は広すぎても掃除が大変なので広くても25m2がちょうどいいと思います。<br>
+    そこまで家に居ない人、荷物が多くない人、寝る場所と作業スペースがあればいい人などは<br>
+    15m2くらいの広さでも良いのではないかと思います。<br>
+
+
+    家賃6万円の部屋の広さが気になったのでヒストグラムにしてみました。<br>
+
+    <img src="images/スクリーンショット 2021-11-16 11.47.41.png" width="40%"><br>
+
+
+    部屋の広さの理想は20m2前後で、20m2あれば十分だったので、家賃6万円以下で十分な広さの物件があることが分かりました。<br>
+
+
+
+  <h3>通学時間の条件</h3>
+
+    通学時間は最寄駅から徒歩10分以内で合計時間が30分以内という条件にしました。<br>
+    <img src="images/スクリーンショット 2021-11-16 11.29.10.png" width="40%"><br>
+    だいぶ絞り込む事ができました。<br>
+
+    以上の条件に合うおすすめの最寄駅を上位10件に絞りました。<br>
+    <img src="images/スクリーンショット 2021-11-16 10.55.49.png" width="40%"><br>
+
+
+
+ </h4>おすすめの最寄駅のヒストグラム</h4>
+
+　  <img src="images/Figure_1.png" width="40%"><br>
+
+ <h3>ソースコード</h3>
+
+<code>
+    <ol style="list-style:decimal-leading-zero outside;in-left:0;padding-left:36px;margin:0;background-color:#EEF;color:#000;">
+    <li style="background-color:#EFF;">import pandas as pd  # データ分析に用いるライブラリ</li>
+    <li style="background-color:#EEF;">import matplotlib.pyplot as plt  # グラフ表示に用いるライブラリ</li>
+    <li style="background-color:#EFF;">pd.set_option('display.unicode.east_asian_width', True)  # 表示のずれを少し緩和</li>
+    <li style="background-color:#EEF;">plt.rcParams['font.family'] = 'IPAexGothic'  # グラフ表示におけるフォントの指定</li>
+    <li style="background-color:#EFF;">data_path = "./data.csv"</li>
+    <li style="background-color:#EEF;">df_data = pd.read_csv(data_path,  encoding="utf-8-sig")</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">print(df_data.columns)</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">print("物件数", len(df_data), "件")</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 1K全体の相場を調べる---------------------------------------</li>
+    <li style="background-color:#EFF;">mask=(df_data["間取り"]=="1K")</li>
+    <li style="background-color:#EEF;">df_selected_roomtype=df_data[mask]</li>
+    <li style="background-color:#EFF;">df_selected_roomtype.loc[:, "家賃"].hist(range=(0,20),bins=40)</li>
+    <li style="background-color:#EEF;">plt.xlabel("1K家賃(万円)") # 横軸のラベル</li>
+    <li style="background-color:#EFF;">plt.ylabel("件数") # 縦軸のラベル</li>
+    <li style="background-color:#EEF;">plt.xlim(0, 15)</li>
+    <li style="background-color:#EFF;">plt.title("1K家賃のヒストグラム") # グラフのタイトル</li>
+    <li style="background-color:#EEF;">plt.show()</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">mask = (df_selected_roomtype['家賃'] &lt;= 6) &amp; (df_selected_roomtype['階数'] &gt;= 2) &amp; (df_selected_roomtype['管理費'] &gt;= 0.5)</li>
+    <li style="background-color:#EEF;"># 絞った内容ををfilter_dfに入れる</li>
+    <li style="background-color:#EFF;">filter_df = df_selected_roomtype[mask]</li>
+    <li style="background-color:#EEF;">print("家賃と階数と管理費で絞り込んだ結果", len(filter_df), "件")</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># 礼金はあってもいいですか?</li>
+    <li style="background-color:#EFF;">key_money = input('礼金はあってもいいですか？　y or n')</li>
+    <li style="background-color:#EEF;">if key_money == 'n':</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# バスなしであれば、バスは0</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;key_money_num = 0</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">else:</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# とりあえずありえない数字を入れておく</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;bus_num = 10000</li>
+    <li style="background-color:#EFF;">mask = (filter_df['礼金'] &lt;=  key_money_num )</li>
+    <li style="background-color:#EEF;"># filter_dfをさらに礼金の有無で絞り込み</li>
+    <li style="background-color:#EFF;">filter_df = filter_df[mask]</li>
+    <li style="background-color:#EEF;">print("家賃、階数、管理費、礼金の有無で絞り込んだ結果", len(filter_df), "件")</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 家賃6万円以下の部屋の広さ---------------------------------------------------</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">filter_df.loc[:, "面積"].hist(range=(0,50),bins=50)</li>
+    <li style="background-color:#EEF;">plt.xlabel("面積") # 横軸のラベル</li>
+    <li style="background-color:#EFF;">plt.ylabel("件数") # 縦軸のラベル</li>
+    <li style="background-color:#EEF;">plt.xlim(0, 50)</li>
+    <li style="background-color:#EFF;">plt.title("家賃6万円以下の物件：面積ヒストグラム") # グラフのタイトル</li>
+    <li style="background-color:#EEF;">plt.show()</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"># # 通学時間（分）</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;">mask = (filter_df['合計時間'] &lt;= 30)&amp;(filter_df['徒歩'] &lt;= 10)</li>
+    <li style="background-color:#EFF;"># filter_dfをさらに合計時間と徒歩で絞り込む(filter_dfを上書き)</li>
+    <li style="background-color:#EEF;">filter_df = filter_df[mask]</li>
+    <li style="background-color:#EFF;">print("家賃、階数、管理費、礼金の有無,通学時間で絞り込んだ結果", len(filter_df), "件")</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"># 条件にあう分件が多い駅top10を表示</li>
+    <li style="background-color:#EEF;">filter_top10_df = filter_df.groupby(['駅'])['駅'].count().sort_values(ascending=False).head(10)</li>
+    <li style="background-color:#EFF;">flag = True</li>
+    <li style="background-color:#EEF;">while (flag):</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;print('あなたにおすすめの駅は')</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;print(filter_top10_df)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;# 　条件に合致する物件数が多い上位10の駅を「おすすめ駅」とする</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# 絞り込んだ結果をさらに「おすすめ駅」で絞り込み</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;mask = filter_df['駅'].isin(filter_top10_df.index)</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;# filter_dfからおすすめ駅に絞り込んだ結果をfilter_top10_station_dfに入れる</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;filter_top10_station_df = filter_df[mask]</li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;axes = filter_top10_station_df.loc[:, "家賃"].hist(by=filter_top10_station_df.loc[:, "駅"],</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range=(rent_lower, rent_upper), bins=10,</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;figsize=(10, 8),</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sharex=True, sharey=True)</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;for ax in axes.reshape(-1):</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ax.grid(b=True)  # グリッドを表示</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ax.set_xlabel("家賃(万円)")  # 横軸のラベル</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ax.set_ylabel("件数")  # 縦軸のラベル</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;plt.suptitle("おすすめ駅：家賃のヒストグラム（家賃制限内）")  # グラフ全体のタイトル</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;plt.subplots_adjust(top=0.92,  # グラフ位置の微調整</li>
+    <li style="background-color:#EFF;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hspace=0.3)  # グラフ間の微調整</li>
+    <li style="background-color:#EEF;">&nbsp;&nbsp;&nbsp;&nbsp;plt.show()</li>
+    <li style="background-color:#EFF;"></li>
+    <li style="background-color:#EEF;"></li>
+    <li style="background-color:#EFF;"></li>
+    </ol></code>
+
+
+
+
+
+    
+<br>
+<br>
+
+
+</body>
+</html>
