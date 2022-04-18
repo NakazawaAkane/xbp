@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>Akaneのデザイン演習第1回</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/xbp.ico">
+</head>
+<body>
+<h1>デザイン演習第1回</h1>
+<h2>課題　</h2>
+
+<h3>Lチカ</h3>
+LEDを光らせる
+LED：5V（過電流防ぐため、何ボルトかに注意）<br>
+LEDの足は長い方が＋（アノード）、短い方がー（カソード）<br>
+Void setup→pinMode(13, output)　＝マイコンの13番ピンから出力する<br>
+digitalWrite(13,HIGH);　もしくはdigitalWrite(13,LOW);<br>
+＝HIGHは電源ON, LOWは電源OFFの意味<br>
+delay(500);　=delayは待ち時間、（）の中は１＝0.001秒<br>
+
+
+<h3> 明るさセンサー</h3>
+CdSセル：光センサー。光の強さに応じて電気抵抗が低下する。<br>
+人の目の特性に近く、緑色の光の感度が高いので明るさセンサーに用いられる。<br>
+暗いとセンサーの抵抗値が大きくなり、明るいところに置くと抵抗値が低くなる性質を持っています。<br>
+Serial.begin(9600);　＝シリアルモニタを使う<br>
+int val=0; →読み取った値を格納する変数<br>
+val=analogRead(1);　　アナログピンから数値を読み取る。（）内でピンを指定。この場合A1のピンを使う。<br>
+Serial.println(val);　printlnでシリアルモニタに数値を表示<br>
+
+
+<h3>LED点灯と明るさセンサーを合体</h3>
+暗いとLEDが光るようにプログラムする。<br>
+「暗い・明るいと〜」の条件はif文を使う。<br>
+
+<h3>日常の中の負、正の感情のシチュエーション</h3>
+
+負：天気が悪い　転ぶ　苦手な人と関わる　苦手なことをする　目標に届かない　<br>
+正：好きなものに関わる・出会う　美味しいものを食べる　美しいものを見る　目標を達成する
+
+
+
+
+
+
+
+
+    
+<br>
+<br>
+
+
+</body>
+</html>
